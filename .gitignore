@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+# Names copied in from the resources repo. They come from the client, so they are not committed.
+/resources/*
+!/resources/.gitkeep
+
+# Local client archive and decoded field paintings.
+/archive/
+*.png
+
+# Unpacker used to read FieldMap textures. Download it yourself; do not commit it.
+/tools/

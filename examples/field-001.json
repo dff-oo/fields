@@ -1,0 +1,332 @@
+{
+  "field": 1,
+  "world": {
+    "param_x": 1113,
+    "param_y": 645,
+    "cloud_x": 1113,
+    "cloud_y": 645,
+    "name_x": 1225,
+    "name_y": 710,
+    "touch_x": 0,
+    "touch_y": 0,
+    "touch_w": 400,
+    "touch_h": 300,
+    "cond_field_id": 0,
+    "continent_tex": 0,
+    "hide_cloud_tex": 0
+  },
+  "defaults": {
+    "break_bonus": 450,
+    "exp": 4,
+    "gil": 28,
+    "quest_battle_id_offset": 50
+  },
+  "portal": {
+    "quest_id": 190,
+    "hex": [8,10],
+    "symbol_label": 5,
+    "hidden_by": 303,
+    "notes": "symbol_label 5 draws the swirl and hides the ordinary hex. It is not a path node, so the opening stays connected without it."
+  },
+  "sites": [
+    {"quest_id":301,"kind":"cutscene","hex":[1,13],"revealed_by":null,"before_talk":4},
+    {
+      "quest_id": 351,
+      "kind": "battle",
+      "name": "1-1 Prairie Winds Pt. 1",
+      "hex": [1,12],
+      "revealed_by": 301,
+      "waves": [
+        [{"enemy":1,"level":1}],
+        [{"enemy":1,"level":1},{"enemy":1,"level":1}],
+        [{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}]
+      ],
+      "goal_score": 900,
+      "score_reward": {"gems":20},
+      "missions": ["no_kos",{"within_turns":15},{"breaks":1}],
+      "notes": "Scripts 8/18/9: WoL alone, then Vivi and Rem join on wave 3. The client does this."
+    },
+    {"quest_id":302,"kind":"cutscene","hex":[2,11],"revealed_by":351,"before_talk":1},
+    {"kind":"move","hexes":[[2,10],[3,10],[3,11],[4,10]],"first_quest_id":191,"revealed_by":302},
+    {
+      "quest_id": 352,
+      "kind": "battle",
+      "name": "1-2 Prairie Winds Pt. 2",
+      "hex": [4,11],
+      "revealed_by": 302,
+      "waves": [
+        [{"enemy":1,"level":1},{"enemy":1,"level":1}],
+        [{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}]
+      ],
+      "goal_score": 1300,
+      "score_reward": {"gems":20},
+      "missions": ["no_kos",{"within_turns":15},{"breaks":2}],
+      "notes": "Script 14, wave 1: the knockback tutorial. Tutorial 19 is keyed to quest_battle_id 302."
+    },
+    {"kind":"move","hexes":[[4,12],[5,13]],"first_quest_id":195,"revealed_by":352},
+    {
+      "quest_id": 353,
+      "kind": "battle",
+      "name": "1-3 Prairie Winds Pt. 3",
+      "hex": [6,13],
+      "revealed_by": 352,
+      "waves": [[{"enemy":5,"level":1}],[{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}]],
+      "goal_score": 1000,
+      "score_reward": {"gems":20},
+      "missions": ["no_kos",{"within_turns":15},{"use_ability":17,"label":"Fire"}],
+      "notes": "Script 13, wave 1: a Flan, weak to Vivi's Fire. Tutorial 96 (Enemies tab) is keyed to quest_battle_id 303."
+    },
+    {"kind":"move","hexes":[[7,13]],"first_quest_id":197,"revealed_by":353},
+    {
+      "quest_id": 354,
+      "kind": "battle",
+      "name": "1-4 Prairie Winds Pt. 4",
+      "hex": [8,12],
+      "revealed_by": 353,
+      "strong_enemy": true,
+      "waves": [[{"enemy":14,"level":2}]],
+      "goal_score": 800,
+      "score_reward": {"gems":20},
+      "missions": ["no_kos",{"within_turns":35},{"use_ability":44,"label":"Shining Shield"}],
+      "clear_bonus": [{"gems":20},{"item_type":8,"item_id":2,"num":1}],
+      "notes": "Script 20, wave 1: Iron Giant, \"Use Shining Shield\". First clear pays the draw ticket."
+    },
+    {
+      "quest_id": 303,
+      "kind": "cutscene",
+      "hex": [8,11],
+      "revealed_by": 354,
+      "before_talk": 2,
+      "chara_icon": 14,
+      "joins": true,
+      "notes": "Sazh joins. The portal hides once this is cleared, and the move hex on its cell takes its place."
+    },
+    {"kind":"move","hexes":[[8,10]],"first_quest_id":198,"revealed_by":303},
+    {
+      "quest_id": 355,
+      "kind": "battle",
+      "name": "1-5 Where the Dead Sleep Pt. 1",
+      "hex": [8,9],
+      "revealed_by": 303,
+      "stage_id": 3,
+      "waves": [
+        [{"enemy":8,"level":1},{"enemy":8,"level":1}],
+        [{"enemy":8,"level":1},{"enemy":8,"level":1},{"enemy":8,"level":1}]
+      ],
+      "goal_score": 1000,
+      "score_reward": {"gems":40},
+      "missions": ["no_kos",{"within_turns":25},{"use_ability":51,"label":"Aim","reward":{"gems":40}}],
+      "notes": "Script 0, wave 1: Red Bats and Sazh's Aim. Tutorial 53 is keyed to quest_battle_id 305."
+    },
+    {"kind":"move","hexes":[[9,9],[10,9]],"first_quest_id":200,"revealed_by":355},
+    {
+      "quest_id": 356,
+      "kind": "battle",
+      "name": "1-6 Where the Dead Sleep Pt. 2",
+      "hex": [11,9],
+      "revealed_by": 355,
+      "stage_id": 3,
+      "waves": [[{"enemy":8,"level":1},{"enemy":8,"level":1}],[{"enemy":4,"level":1}]],
+      "goal_score": 1500,
+      "score_reward": {"gems":40},
+      "missions": ["no_kos",{"within_turns":20},{"breaks":2}],
+      "notes": "Script 11 is wave 2, the Skeleton and the Brace tutorial. Mission 2 is really \"within 20 actions\"; no such type exists, so it is sent as within 20 turns."
+    },
+    {
+      "quest_id": 304,
+      "kind": "cutscene",
+      "hex": [12,9],
+      "revealed_by": 356,
+      "before_talk": 7,
+      "chara_icon": 9,
+      "joins": true,
+      "notes": "Clearing this opens four sites at once. The client then shows the Sites tutorial (58)."
+    },
+    {
+      "kind": "move",
+      "hexes": [[13,9],[13,10],[13,11],[13,8],[14,8],[14,9],[12,7]],
+      "first_quest_id": 202,
+      "revealed_by": 304
+    },
+    {"quest_id":305,"kind":"cutscene","hex":[14,11],"revealed_by":304,"before_talk":12},
+    {
+      "quest_id": 357,
+      "kind": "battle",
+      "name": "Outskirts of the Meadow",
+      "hex": [14,12],
+      "revealed_by": 305,
+      "waves": [[{"enemy":1,"level":1},{"enemy":1,"level":1}],[{"enemy":4,"level":1},{"enemy":4,"level":1}]],
+      "goal_score": 1100,
+      "score_reward": {"gems":40},
+      "missions": ["no_kos",{"within_turns":30},{"in_party":9,"label":"Tifa"}]
+    },
+    {
+      "quest_id": 312,
+      "kind": "cutscene",
+      "hex": [13,13],
+      "revealed_by": 357,
+      "before_talk": 15,
+      "chara_icon": 1,
+      "joins": true,
+      "notes": "306 must still be uncleared when 1-9 clears, or the client skips the summon binding tutorial (78)."
+    },
+    {
+      "quest_id": 364,
+      "kind": "battle",
+      "name": "1-7 Where the Dead Sleep Pt. 3",
+      "hex": [13,7],
+      "revealed_by": 304,
+      "stage_id": 3,
+      "waves": [[{"enemy":1,"level":1},{"enemy":4,"level":1},{"enemy":1,"level":1}]],
+      "goal_score": 1000,
+      "score_reward": {"gems":40},
+      "missions": ["no_kos",{"within_turns":15},{"breaks":1}]
+    },
+    {
+      "quest_id": 359,
+      "kind": "battle",
+      "name": "Quick Encounter Pt. 1-1",
+      "hex": [15,9],
+      "revealed_by": 304,
+      "side_quest": true,
+      "stage_id": 3,
+      "waves": [[{"enemy":4,"level":1},{"enemy":1,"level":1}]],
+      "goal_score": 1000,
+      "score_reward": {"gil":500},
+      "missions": [
+        {"no_kos":true,"reward":{"gil":250}},
+        {"within_turns":15,"reward":{"gil":250}},
+        {"in_party":1,"label":"Cloud"}
+      ],
+      "clear_bonus": [{"gems":50}]
+    },
+    {
+      "quest_id": 221,
+      "kind": "treasure",
+      "hex": [16,9],
+      "revealed_by": 359,
+      "treasure": [{"item_type":11,"item_id":2,"num":3}],
+      "quest_type": 2,
+      "notes": "Unconfirmed which quest_type draws the plain chest. 2 is used here."
+    },
+    {"kind":"move","hexes":[[11,7],[10,7]],"first_quest_id":209,"revealed_by":312},
+    {"quest_id":307,"kind":"cutscene","hex":[9,7],"revealed_by":312,"before_talk":16},
+    {
+      "quest_id": 360,
+      "kind": "battle",
+      "name": "Where the Dead Sleep: Final",
+      "hex": [8,7],
+      "revealed_by": 307,
+      "waves": [
+        [{"enemy":1,"level":1},{"enemy":1,"level":1}],
+        [{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}]
+      ],
+      "goal_score": 1100,
+      "score_reward": {"gems":40},
+      "missions": ["no_kos",{"within_turns":20},{"in_party":14,"label":"Sazh"}]
+    },
+    {
+      "quest_id": 308,
+      "kind": "cutscene",
+      "hex": [7,7],
+      "revealed_by": 360,
+      "before_talk": 17,
+      "chara_icon": 8,
+      "joins": true
+    },
+    {"kind":"move","hexes":[[13,6]],"first_quest_id":211,"revealed_by":364},
+    {"kind":"move","hexes":[[13,5],[12,5],[11,5]],"first_quest_id":213,"revealed_by":364},
+    {"quest_id":309,"kind":"cutscene","hex":[10,4],"revealed_by":364,"before_talk":18},
+    {
+      "quest_id": 361,
+      "kind": "battle",
+      "name": "Wavering Trails",
+      "hex": [9,4],
+      "revealed_by": 309,
+      "waves": [
+        [{"enemy":1,"level":1},{"enemy":1,"level":1}],
+        [{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}]
+      ],
+      "goal_score": 1100,
+      "score_reward": {"gems":40},
+      "missions": ["no_kos",{"within_turns":15},{"breaks":2}]
+    },
+    {
+      "quest_id": 310,
+      "kind": "cutscene",
+      "hex": [8,3],
+      "revealed_by": 361,
+      "before_talk": 20,
+      "chara_icon": 11,
+      "joins": true
+    },
+    {
+      "quest_id": 222,
+      "kind": "treasure",
+      "hex": [8,2],
+      "revealed_by": 310,
+      "treasure": [{"gil":2000}],
+      "quest_type": 2
+    },
+    {"kind":"move","hexes":[[11,4],[12,4]],"first_quest_id":216,"revealed_by":310},
+    {
+      "quest_id": 362,
+      "kind": "battle",
+      "name": "1-8 The Dark Forest Pt. 1",
+      "hex": [14,4],
+      "revealed_by": 310,
+      "waves": [[{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}]],
+      "goal_score": 1200,
+      "score_reward": {"gems":100},
+      "missions": [
+        {"no_kos":true,"reward":{"item_type":9,"item_id":16,"num":3}},
+        {"within_turns":15,"reward":{"item_type":9,"item_id":13,"num":3}},
+        {"breaks":1,"reward":{"item_type":9,"item_id":7,"num":3}}
+      ]
+    },
+    {"kind":"move","hexes":[[15,4],[15,5],[16,4]],"first_quest_id":218,"revealed_by":362},
+    {
+      "quest_id": 363,
+      "kind": "battle",
+      "name": "Quick Encounter Pt. 1-2",
+      "hex": [16,5],
+      "revealed_by": 362,
+      "side_quest": true,
+      "stage_id": 2,
+      "waves": [[{"enemy":5,"level":1},{"enemy":1,"level":1}]],
+      "goal_score": 1200,
+      "score_reward": {"gil":1000},
+      "missions": [
+        {"no_kos":true,"reward":{"item_type":9,"item_id":1,"num":3}},
+        {"within_turns":15,"reward":{"item_type":9,"item_id":4,"num":3}},
+        {"breaks":1,"reward":{"item_type":9,"item_id":10,"num":3}}
+      ]
+    },
+    {"quest_id":311,"kind":"cutscene","hex":[16,3],"revealed_by":362,"before_talk":10},
+    {
+      "quest_id": 358,
+      "kind": "battle",
+      "name": "1-9 The Dark Forest Pt. 2",
+      "hex": [16,2],
+      "revealed_by": 311,
+      "grants_summon": 4,
+      "strong_enemy": true,
+      "stage_id": 2,
+      "waves": [[{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}],[{"enemy":15,"level":1}]],
+      "goal_score": 1200,
+      "score_reward": {"gems":20},
+      "missions": ["no_kos",{"within_turns":60},{"breaks":2}],
+      "clear_bonus": [{"item_type":10,"item_id":101,"num":1}],
+      "notes": "Wave 2 lends Chocobo and the clear grants it. Owning the Gale Adamite brings up summon binding."
+    },
+    {
+      "quest_id": 306,
+      "kind": "cutscene",
+      "hex": [15,2],
+      "revealed_by": 358,
+      "before_talk": 11,
+      "goal": true,
+      "notes": "Clearing the G site clears field 1 and opens Hard and the next chapter."
+    }
+  ]
+}
