@@ -86,3 +86,11 @@ export function SearchSelect(props: {
 export function namedOptions(rows: readonly { id: number; name: string }[]): Option[] {
   return rows.map((row) => ({ key: String(row.id), label: `${row.name || 'unnamed'} (${row.id})` }));
 }
+
+/** Confirmed names plain, guesses with a question mark, and the rest by id. */
+export function stageOptions(rows: readonly { id: number; name: string; confirmed?: boolean }[]): Option[] {
+  return rows.map((row) => ({
+    key: String(row.id),
+    label: row.name ? `${row.name}${row.confirmed ? '' : '?'} (${row.id})` : `Stage ${row.id}`,
+  }));
+}

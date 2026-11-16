@@ -1,0 +1,15 @@
+[
+  {
+    "id": 0,
+    "name": "",
+    "confirmed": false,
+    "notes": "Has extra collision/layout files, so probably not a normal battle stage. Untested."
+  },
+  { "id": 1, "name": "Prairie", "confirmed": true, "notes": "Green field. Confirmed." },
+  { "id": 2, "name": "Forest", "confirmed": true, "notes": "Confirmed." },
+  { "id": 3, "name": "Cavern", "confirmed": true, "notes": "Confirmed. Used by 1-5 and 1-6." },
+  { "id": 4, "name": "Ruined temple", "confirmed": false, "notes": "Likely. Seen once while 3 and 4 were sent close together." },
+  { "id": 5, "name": "Snow", "confirmed": false, "notes": "Likely." },
+  { "id": 6, "name": "Snow", "confirmed": false, "notes": "Either 6 or 7 was the second snow scene." },
+  { "id": 7, "name": "Snow", "confirmed": false, "notes": "See 6." }
+]

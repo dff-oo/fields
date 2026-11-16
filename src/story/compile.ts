@@ -49,10 +49,13 @@ export function rewardFromFile(file: RewardFile | undefined): StoryReward {
   return { item_type: file.item_type, item_id: file.item_id, item_num: file.num };
 }
 
+/** The mission kinds a story file can name, and the mission_type the client expects for each. */
+export const MISSION_TYPES = { no_kos: 2, within_turns: 3, breaks: 4, in_party: 8, use_ability: 28 } as const;
+
 export function missionFromFile(file: MissionFile): StoryMission {
   if (file === 'no_kos' || 'no_kos' in file) {
     return {
-      type: 2,
+      type: MISSION_TYPES.no_kos,
       arg: 0,
       description: 'Clear without any KOs',
       reward: rewardFromFile(file === 'no_kos' ? undefined : file.reward),
@@ -60,7 +63,7 @@ export function missionFromFile(file: MissionFile): StoryMission {
   }
   if ('within_turns' in file) {
     return {
-      type: 3,
+      type: MISSION_TYPES.within_turns,
       arg: file.within_turns,
       description: `Clear within ${file.within_turns} turns`,
       reward: rewardFromFile(file.reward),
@@ -68,7 +71,7 @@ export function missionFromFile(file: MissionFile): StoryMission {
   }
   if ('breaks' in file) {
     return {
-      type: 4,
+      type: MISSION_TYPES.breaks,
       arg: file.breaks,
       description: `Inflict ${file.breaks} or more Breaks`,
       reward: rewardFromFile(file.reward),
@@ -76,14 +79,14 @@ export function missionFromFile(file: MissionFile): StoryMission {
   }
   if ('in_party' in file) {
     return {
-      type: 8,
+      type: MISSION_TYPES.in_party,
       arg: file.in_party,
       description: `Have ${file.label} in your party`,
       reward: rewardFromFile(file.reward),
     };
   }
   return {
-    type: 28,
+    type: MISSION_TYPES.use_ability,
     arg: file.use_ability,
     description: `Use ${file.label}`,
     reward: rewardFromFile(file.reward),

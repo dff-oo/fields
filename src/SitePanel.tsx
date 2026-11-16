@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
+import { MISSION_TYPES } from './story/compile';
 import type { MissionFile, RewardFile, StoryFile, StorySiteFile } from './story/schema';
 import type { Resources } from './api';
 import { KINDS, adjacentMoves, changeKind, clearHex, defaultReveal, extendMove, newSite, questHexes, siteAt, siteLabel, type HexAt, type Kind } from './edit';
-import { SearchSelect, namedOptions, type Option } from './SearchSelect';
+import { SearchSelect, namedOptions, stageOptions, type Option } from './SearchSelect';
 
 type Battle = Extract<StorySiteFile, { kind: 'battle' }>;
 type Placed = Extract<StorySiteFile, { kind: 'cutscene' | 'battle' }>;
@@ -21,7 +22,7 @@ export function SitePanel(props: {
     enemies: namedOptions(resources.enemies),
     abilities: namedOptions(resources.abilities),
     summons: namedOptions(resources.summons),
-    stages: namedOptions(resources.stages),
+    stages: stageOptions(resources.stages),
     talks: namedOptions(resources.talks),
     items: resources.items.map((item) => ({ key: `${item.item_type}:${item.item_id}`, label: `${item.name} (${item.item_type}:${item.item_id})` })),
   }), [resources]);
@@ -229,11 +230,11 @@ function PlacedFields(props: { site: Placed; options: PanelOptions; onChange: (s
 }
 
 const MISSION_KINDS = [
-  { kind: 'no_kos', type: 2, fallback: 'Clear without any KOs' },
-  { kind: 'within_turns', type: 3, fallback: 'Clear within %d turns' },
-  { kind: 'breaks', type: 4, fallback: 'Inflict %d or more Breaks' },
-  { kind: 'in_party', type: 8, fallback: 'Have %s in your party' },
-  { kind: 'use_ability', type: 28, fallback: 'Use %s' },
+  { kind: 'no_kos', type: MISSION_TYPES.no_kos, fallback: 'Clear without any KOs' },
+  { kind: 'within_turns', type: MISSION_TYPES.within_turns, fallback: 'Clear within %d turns' },
+  { kind: 'breaks', type: MISSION_TYPES.breaks, fallback: 'Inflict %d or more Breaks' },
+  { kind: 'in_party', type: MISSION_TYPES.in_party, fallback: 'Have %s in your party' },
+  { kind: 'use_ability', type: MISSION_TYPES.use_ability, fallback: 'Use %s' },
 ] as const;
 
 type MissionKind = (typeof MISSION_KINDS)[number]['kind'];
