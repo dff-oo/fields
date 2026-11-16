@@ -9,11 +9,7 @@ const root = fileURLToPath(new URL('.', import.meta.url));
 const RESOURCE_FILES = ['characters', 'enemies', 'abilities', 'items', 'summons', 'fields', 'stages', 'talks', 'missions'];
 
 function resourcesDir(): string {
-  for (const region of ['gb', 'jp']) {
-    const directory = resolve(root, 'resources', region);
-    if (existsSync(resolve(directory, 'characters.json'))) return directory;
-  }
-  return resolve(root, 'resources/gb');
+  return resolve(root, 'resources');
 }
 
 function sendJson(res: { setHeader: (name: string, value: string) => void; end: (body: string) => void }, body: unknown): void {

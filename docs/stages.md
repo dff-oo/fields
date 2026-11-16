@@ -1,6 +1,6 @@
 ﻿# Battle stages
 
-Stage names are community descriptions, not client data. They are kept with the resource extractor and copied into `resources/<region>/stages.json` for the map builder.
+Stage names are community descriptions, not client data. They are kept with the resource extractor and copied into `resources/stages.json` for the map builder.
 
 Each id loads the client model `S<id>Model` (zero-padded to three digits). Ids 0-180 exist in the archive except 99. Fill in `name` after checking a stage in game. `notes` is for anything still uncertain.
 

@@ -15,11 +15,13 @@ See [docs/contributing-content.md](docs/contributing-content.md) for how a file 
 
 ## Names and field paintings
 
-The pickers read `resources/<region>/*.json`. That folder is git-ignored. Copy `data/<region>` from the resources repo into `resources/` (so `resources/gb/characters.json` and the rest are present). Without those files the lists are empty and the builder still runs.
+Only the global (GL, English) client is supported.
 
-The field painting comes from a local client archive:
+The pickers read `resources/*.json`. That folder is git-ignored. Copy the contents of `data/` from the resources repo into `resources/` (so `resources/characters.json` and the rest are present). Without those files the lists are empty and the builder still runs.
 
-- Put it at `archive/<region>/` using the same layout as a device (`data/data/<package>/files` and `sdcard/Android/data/<package>/files`), or
-- Set `DFFOO_ARCHIVE_ROOT` to one region's archive root, and `DFFOO_REGION=jp` when that root is the Japanese client.
+The field painting comes from a local copy of the global client's files:
+
+- Put it at `archive/gb/` using the same layout as a device (`data/data/<package>/files` and `sdcard/Android/data/<package>/files`), or
+- Set `DFFOO_ARCHIVE_ROOT` to that root.
 
 Unpacking a FieldMap texture also needs the unpacker at `tools/re/package/` (the same tool the old monorepo used). That directory is git-ignored.

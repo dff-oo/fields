@@ -4,7 +4,7 @@ Story maps are JSON files. The builder loads and saves them in the browser; noth
 
 ## Names
 
-Copy `data/<region>` from the resources repo into `resources/<region>/` in this repo. That directory is git-ignored, and pull requests must not include it. Enemy, character, ability, item, summon and field names, cutscene titles and mission texts come from there. Stage names and mission kinds are part of the same copy.
+Copy the contents of `data/` from the resources repo into `resources/` in this repo. That directory is git-ignored, and pull requests must not include it. Enemy, character, ability, item, summon and field names, cutscene titles and mission texts come from there. Stage names and mission kinds are part of the same copy.
 
 ## Run the builder
 

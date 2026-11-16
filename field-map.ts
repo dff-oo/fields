@@ -4,10 +4,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { deflateSync } from 'node:zlib';
-const PACKAGES = {
-  gb: 'com.square_enix.android_googleplay.DFFOperaOmnian',
-  jp: 'com.square_enix.android_googleplay.DFFOperaOmniaj',
-} as const;
+const PACKAGE_NAME = 'com.square_enix.android_googleplay.DFFOperaOmnian';
 
 const MODIFIERS = [
   [2, 8, -2, -8],
@@ -145,29 +142,20 @@ export function encodePng(rgba: Buffer, width: number, height: number): Buffer {
   ]);
 }
 
-/** Region archive roots. DFFOO_ARCHIVE_ROOT is one region's root; otherwise archive/gb and archive/jp in this repo. */
-function archiveRoots(repo: string): { region: 'gb' | 'jp'; root: string }[] {
-  const override = process.env.DFFOO_ARCHIVE_ROOT;
-  if (override) {
-    const region = process.env.DFFOO_REGION === 'jp' ? 'jp' : 'gb';
-    return [{ region, root: override }];
-  }
-  return (['gb', 'jp'] as const).map((region) => ({ region, root: resolve(repo, 'archive', region) }));
+/** The global client's archive: DFFOO_ARCHIVE_ROOT, otherwise archive/gb in this repo. */
+function archiveRoot(repo: string): string {
+  return process.env.DFFOO_ARCHIVE_ROOT ?? resolve(repo, 'archive', 'gb');
 }
 
 function masterRow(repo: string, fieldId: number): { name: string; scaleX: number; scaleY: number } | null {
-  for (const { region, root } of archiveRoots(repo)) {
-    const directory = resolve(root, 'data', 'data', PACKAGES[region], 'files');
-    const file = join(directory, `N1${createHash('md5').update('mst_field_disp.json').digest('hex')}`);
-    if (!existsSync(file)) continue;
-    const decoded = Buffer.from(readFileSync(file).map((byte) => byte ^ 0xff)).toString('utf8');
-    const table = JSON.parse(decoded) as Record<string, { background_file_name?: string; disp_scale_x?: number; disp_scale_y?: number }>;
-    const row = table[String(fieldId)];
-    if (row?.background_file_name) {
-      return { name: row.background_file_name, scaleX: row.disp_scale_x || 2, scaleY: row.disp_scale_y || 2 };
-    }
-  }
-  return null;
+  const directory = resolve(archiveRoot(repo), 'data', 'data', PACKAGE_NAME, 'files');
+  const file = join(directory, `N1${createHash('md5').update('mst_field_disp.json').digest('hex')}`);
+  if (!existsSync(file)) return null;
+  const decoded = Buffer.from(readFileSync(file).map((byte) => byte ^ 0xff)).toString('utf8');
+  const table = JSON.parse(decoded) as Record<string, { background_file_name?: string; disp_scale_x?: number; disp_scale_y?: number }>;
+  const row = table[String(fieldId)];
+  if (!row?.background_file_name) return null;
+  return { name: row.background_file_name, scaleX: row.disp_scale_x || 2, scaleY: row.disp_scale_y || 2 };
 }
 
 const located = new Map<string, string | null>();
@@ -175,19 +163,16 @@ const located = new Map<string, string | null>();
 function findAsset(repo: string, fileName: string): string | null {
   const cached = located.get(fileName);
   if (cached !== undefined) return cached;
-  for (const { region, root } of archiveRoots(repo)) {
-    const directory = resolve(root, 'sdcard', 'Android', 'data', PACKAGES[region], 'files');
-    if (!existsSync(directory)) continue;
-    const stack = [directory];
-    while (stack.length) {
-      const current = stack.pop()!;
-      for (const entry of readdirSync(current, { withFileTypes: true })) {
-        const path = join(current, entry.name);
-        if (entry.isDirectory()) stack.push(path);
-        else if (entry.name.toLowerCase() === fileName.toLowerCase()) {
-          located.set(fileName, path);
-          return path;
-        }
+  const directory = resolve(archiveRoot(repo), 'sdcard', 'Android', 'data', PACKAGE_NAME, 'files');
+  const stack = existsSync(directory) ? [directory] : [];
+  while (stack.length) {
+    const current = stack.pop()!;
+    for (const entry of readdirSync(current, { withFileTypes: true })) {
+      const path = join(current, entry.name);
+      if (entry.isDirectory()) stack.push(path);
+      else if (entry.name.toLowerCase() === fileName.toLowerCase()) {
+        located.set(fileName, path);
+        return path;
       }
     }
   }
