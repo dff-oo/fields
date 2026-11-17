@@ -1,5 +1,5 @@
 {
-  "name": "dffoo-builder",
+  "name": "@dffoogg/fields",
   "private": true,
   "type": "module",
   "scripts": {
