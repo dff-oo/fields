@@ -268,7 +268,8 @@
       "treasure": [{"gil":2000}],
       "quest_type": 2
     },
-    {"kind":"move","hexes":[[11,4],[12,4]],"first_quest_id":216,"revealed_by":310},
+    {"kind":"move","hexes":[[11,4]],"first_quest_id":216,"revealed_by":310},
+    {"quest_id":217,"kind":"gate","hex":[12,4],"revealed_by":310,"opens_when":[312]},
     {
       "quest_id": 362,
       "kind": "battle",
