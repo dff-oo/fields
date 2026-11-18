@@ -59,10 +59,7 @@ export function checkStories(
     }
     const compiled = compileStoryFile(parsed.data);
     expanded.push({ file: file.name, fieldId: parsed.data.field, compiled });
-    const ids = [
-      ...compiled.sites.map((site) => site.questId),
-      ...(compiled.portal ? [compiled.portal.questId] : []),
-    ];
+    const ids = compiled.sites.map((site) => site.questId);
     for (const questId of ids) {
       const previous = questFiles.get(questId);
       if (previous) {
@@ -104,7 +101,6 @@ function fieldProblems(fieldId: number, group: Expanded[]): StoryProblem[] {
   const problems: StoryProblem[] = [];
   const file = group.map((entry) => entry.file).join(', ');
   const sites = group.flatMap((entry) => entry.compiled.sites);
-  const portals = group.map((entry) => entry.compiled.portal).filter((portal) => portal !== null);
   if (sites.length === 0) return problems;
   const starts = sites.filter((site) => site.revealedBy === null);
   if (starts.length !== 1) {
@@ -125,15 +121,9 @@ function fieldProblems(fieldId: number, group: Expanded[]): StoryProblem[] {
     }
   }
   const known = new Set(sites.map((site) => site.questId));
-  for (const portal of portals) known.add(portal.questId);
   for (const site of sites) {
     if (site.revealedBy !== null && !known.has(site.revealedBy)) {
       problems.push({ file, message: `quest ${site.questId} is revealed by ${site.revealedBy}, which is not on this field` });
-    }
-  }
-  for (const portal of portals) {
-    if (!known.has(portal.hiddenBy)) {
-      problems.push({ file, message: `portal ${portal.questId} is hidden by ${portal.hiddenBy}, which is not on this field` });
     }
   }
   const seen = new Set<number>();

@@ -21,13 +21,6 @@
     "gil": 28,
     "quest_battle_id_offset": 50
   },
-  "portal": {
-    "quest_id": 190,
-    "hex": [8,10],
-    "symbol_label": 5,
-    "hidden_by": 303,
-    "notes": "symbol_label 5 draws the swirl and hides the ordinary hex. It is not a path node, so the opening stays connected without it."
-  },
   "sites": [
     {"quest_id":301,"kind":"cutscene","hex":[1,13],"revealed_by":null,"before_talk":4},
     {
@@ -99,7 +92,7 @@
       "before_talk": 2,
       "chara_icon": 14,
       "joins": true,
-      "notes": "Sazh joins. The portal hides once this is cleared, and the move hex on its cell takes its place."
+      "notes": "Sazh joins."
     },
     {"kind":"move","hexes":[[8,10]],"first_quest_id":198,"revealed_by":303},
     {

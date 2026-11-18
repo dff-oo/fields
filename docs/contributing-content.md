@@ -31,11 +31,11 @@ When the client archive is on disk, the field's `FieldMap` texture is the backgr
 
 ## What a file contains
 
-One file is one field, or one act of a field. Files that share a `field` id are combined by the server: only one of them may set `world`, `portal` or `goal`. Numeric ids are stored without names. The builder and error messages show the names when `resources/` is present.
+One file is one field, or one act of a field. Files that share a `field` id are combined by the server: only one of them may set `world` or `goal`. Numeric ids are stored without names. The builder and error messages show the names when `resources/` is present.
 
 Put the video or page that shows a site in `sources`. `notes` can still be written by hand; the builder keeps it but does not edit it, and the server ignores it.
 
-Quest ids must be unique and must not use the field clear marker (`field id * 100 + 99`, so 199 on field 1). The builder suggests the next free id. Chapter 1 uses 190-364. Whether other unused ids work in the client without a matching client master is still unverified, so keep a new act as a draft until that is checked.
+Quest ids must be unique and must not use the field clear marker (`field id * 100 + 99`, so 199 on field 1). The builder suggests the next free id. Chapter 1 uses 191-364. Whether other unused ids work in the client without a matching client master is still unverified, so keep a new act as a draft until that is checked.
 
 ## Check before a pull request
 

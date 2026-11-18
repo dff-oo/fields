@@ -67,7 +67,6 @@ textarea { min-height: 60px; resize: vertical; }
 .map .kind-battle { fill: #ff1744; stroke: #ff9aa8; }
 .map .kind-treasure { fill: #ffea00; stroke: #fff9a8; }
 .map .kind-move { fill: #18ffff; stroke: #c4ffff; }
-.map .kind-portal { fill: #ffffff; stroke: #ffffff; pointer-events: none; }
 .map .hex:not(.empty) { fill-opacity: 0.6; stroke-width: 2.5; filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, 0.9)); }
 .has-overlay .hex:not(.empty) { fill-opacity: 0.55; }
 .map .hex.kind-treasure { fill-opacity: 0.85; }

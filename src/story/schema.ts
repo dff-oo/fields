@@ -134,23 +134,12 @@ export const defaultsSchema = z
   })
   .strict();
 
-export const portalSchema = z
-  .object({
-    quest_id: z.number().int(),
-    hex: hexSchema,
-    symbol_label: z.number().int(),
-    hidden_by: z.number().int(),
-    notes: z.string().optional(),
-  })
-  .strict();
-
 export const storyFileSchema = z
   .object({
     $schema: z.string().optional(),
     field: z.number().int().positive(),
     world: worldSchema.optional(),
     defaults: defaultsSchema.optional(),
-    portal: portalSchema.optional(),
     sites: z.array(siteSchema),
   })
   .strict();

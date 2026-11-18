@@ -18,7 +18,6 @@ const LEGEND = [
   { kind: 'battle', label: 'Battle' },
   { kind: 'treasure', label: 'Treasure' },
   { kind: 'move', label: 'Move' },
-  { kind: 'portal', label: 'Portal' },
 ];
 
 /** Pull a line back from both hex centres, keeping a visible stub between neighbours. */
@@ -293,12 +292,7 @@ export function App() {
               if (image && !onMap(x, y, image)) return null;
               const occupied = siteAt(file, [x, y]);
               const kind = occupied >= 0 ? file.sites[occupied].kind : '';
-              const portalHere = file.portal && file.portal.hex[0] === x && file.portal.hex[1] === y;
-              const tip = occupied >= 0
-                ? hexTip(file, [x, y], resources.talks)
-                : portalHere
-                  ? `Quest ${file.portal?.quest_id} · Portal`
-                  : null;
+              const tip = occupied >= 0 ? hexTip(file, [x, y], resources.talks) : null;
               return (
                 <polygon
                   key={`${x}-${y}`}
@@ -310,11 +304,6 @@ export function App() {
                 </polygon>
               );
             })}
-            {file.portal && (
-              <polygon points={hexOutline(file.portal.hex[0], file.portal.hex[1])} className="hex kind-portal">
-                <title>{`Quest ${file.portal.quest_id} · Portal`}</title>
-              </polygon>
-            )}
             {arrows.map(({ index, x1, y1, x2, y2 }) => (
               <line key={`reveal-${index}`} className="reveal" markerEnd="url(#reveal-arrow)" x1={x1} y1={y1} x2={x2} y2={y2} />
             ))}

@@ -1,12 +1,11 @@
 import type { StoryFile } from './schema';
 
-const FILE_KEYS = ['$schema', 'field', 'world', 'defaults', 'portal', 'sites'] as const;
+const FILE_KEYS = ['$schema', 'field', 'world', 'defaults', 'sites'] as const;
 const WORLD_KEYS = [
   'param_x', 'param_y', 'cloud_x', 'cloud_y', 'name_x', 'name_y',
   'touch_x', 'touch_y', 'touch_w', 'touch_h', 'cond_field_id', 'continent_tex', 'hide_cloud_tex',
 ] as const;
 const DEFAULT_KEYS = ['break_bonus', 'exp', 'gil', 'quest_battle_id_offset'] as const;
-const PORTAL_KEYS = ['quest_id', 'hex', 'symbol_label', 'hidden_by', 'notes'] as const;
 const PROVENANCE = ['sources', 'notes'] as const;
 
 const SITE_KEYS: Record<string, readonly string[]> = {
@@ -35,7 +34,6 @@ export function orderStory(file: StoryFile): StoryFile {
       ...file,
       world: file.world ? order(file.world, WORLD_KEYS) : undefined,
       defaults: file.defaults ? order(file.defaults, DEFAULT_KEYS) : undefined,
-      portal: file.portal ? order(file.portal, PORTAL_KEYS) : undefined,
       sites,
     },
     FILE_KEYS,
@@ -56,7 +54,7 @@ function formatValue(value: unknown, indent: number, expand: boolean): string {
   const entries = Object.entries(value as Record<string, unknown>);
   if (entries.length === 0) return '{}';
   const lines = entries.map(([key, child]) => {
-    const text = formatValue(child, indent + 1, key === 'sites' || key === 'world' || key === 'defaults' || key === 'portal' || isSite(child));
+    const text = formatValue(child, indent + 1, key === 'sites' || key === 'world' || key === 'defaults' || isSite(child));
     return `${inner}${JSON.stringify(key)}: ${text}`;
   });
   return `{\n${lines.join(',\n')}\n${pad}}`;

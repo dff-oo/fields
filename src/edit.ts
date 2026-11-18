@@ -29,7 +29,6 @@ export function questHexes(file: StoryFile): { questId: number; hex: HexAt; site
       site.hexes.forEach((hex, step) => rows.push({ questId: site.first_quest_id + step, hex, site: index }));
     } else rows.push({ questId: site.quest_id, hex: site.hex, site: index });
   });
-  if (file.portal) rows.push({ questId: file.portal.quest_id, hex: file.portal.hex, site: -1 });
   return rows;
 }
 
