@@ -1,5 +1,5 @@
 {
-  "$schema": "https://dffoogg.github.io/field-editor/field.schema.json",
+  "$schema": "https://dff-oo.github.io/field-editor/field.schema.json",
   "field": 1,
   "world": {
     "param_x": 1113,
