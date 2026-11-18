@@ -1,4 +1,5 @@
 {
+  "$schema": "https://dffoogg.github.io/field-editor/field.schema.json",
   "field": 1,
   "world": {
     "param_x": 1113,
@@ -202,8 +203,8 @@
       "quest_type": 2,
       "notes": "Unconfirmed which quest_type draws the plain chest. 2 is used here."
     },
-    {"kind":"move","hexes":[[11,7],[10,7]],"first_quest_id":209,"revealed_by":312},
-    {"quest_id":307,"kind":"cutscene","hex":[9,7],"revealed_by":312,"before_talk":16},
+    {"quest_id":209,"kind":"gate","hex":[11,7],"revealed_by":304,"opens_when":[312]},
+    {"quest_id":307,"kind":"cutscene","hex":[9,7],"revealed_by":209,"before_talk":16},
     {
       "quest_id": 360,
       "kind": "battle",
@@ -228,7 +229,7 @@
       "joins": true
     },
     {"kind":"move","hexes":[[13,6]],"first_quest_id":211,"revealed_by":364},
-    {"kind":"move","hexes":[[13,5],[12,5],[11,5]],"first_quest_id":213,"revealed_by":364},
+    {"quest_id":213,"kind":"gate","hex":[13,5],"revealed_by":364,"opens_when":[312,308,310]},
     {"quest_id":309,"kind":"cutscene","hex":[10,4],"revealed_by":364,"before_talk":18},
     {
       "quest_id": 361,
@@ -261,8 +262,7 @@
       "treasure": [{"gil":2000}],
       "quest_type": 2
     },
-    {"kind":"move","hexes":[[11,4]],"first_quest_id":216,"revealed_by":310},
-    {"quest_id":217,"kind":"gate","hex":[12,4],"revealed_by":310,"opens_when":[312]},
+    {"kind":"move","hexes":[[11,4]],"first_quest_id":216,"revealed_by":364},
     {
       "quest_id": 362,
       "kind": "battle",
@@ -321,6 +321,11 @@
       "before_talk": 11,
       "goal": true,
       "notes": "Clearing the G site clears field 1 and opens Hard and the next chapter."
-    }
+    },
+    {"kind":"move","hexes":[[14,7]],"first_quest_id":365,"revealed_by":304},
+    {"kind":"move","hexes":[[10,7]],"first_quest_id":366,"revealed_by":209},
+    {"kind":"move","hexes":[[12,5]],"first_quest_id":367,"revealed_by":364},
+    {"kind":"move","hexes":[[12,4]],"first_quest_id":368,"revealed_by":364},
+    {"kind":"move","hexes":[[11,5]],"first_quest_id":369,"revealed_by":364}
   ]
 }
