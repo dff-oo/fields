@@ -268,7 +268,7 @@
       "kind": "battle",
       "name": "1-8 The Dark Forest Pt. 1",
       "hex": [14,4],
-      "revealed_by": 310,
+      "revealed_by": 213,
       "waves": [[{"enemy":1,"level":1},{"enemy":1,"level":1},{"enemy":1,"level":1}]],
       "goal_score": 1200,
       "score_reward": {"gems":100},
